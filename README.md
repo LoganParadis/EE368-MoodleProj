@@ -1,2 +1,2 @@
-# EE368-MoodleProj
+# EE368-MoodleProject
 Contains all the required tasks 
