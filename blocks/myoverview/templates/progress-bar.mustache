@@ -1,0 +1,50 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template block_myoverview/progress-bar
+
+    This template renders a simple progress bar.
+
+    Example context (json):
+    {
+        "progress": 50
+    }
+}}
+<div class="progress-text">
+    <span class="sr-only">{{#str}}aria:courseprogress, block_myoverview{{/str}}</span>
+    {{#str}}completepercent, block_myoverview, <span>{{progress}}</span>{{/str}}
+    {{#hasprogress}}
+        <div class="d-flex align-items-start" , style="padding-left: 10px; padding-bottom: 8px">
+            <progress id="course-progress-bar" value="{{progress}}" max="100"></progress>
+
+            <script>
+                    {{#js}}
+                    var progressBar = document.getElementById("course-progress-bar");
+                    var percent = progressBar.value / progressBar.max * 100;
+
+                    if (percent < 34) {
+                        progressBar.style.accentColor = "red";
+                    } else if (percent < 67) {
+                        progressBar.style.accentColor = "yellow";
+                    } else {
+                        progressBar.style.accentColor = "green";
+                    }
+                    {{/js}}
+            </script>
+        </div>
+    {{/hasprogress}}
+</div>
