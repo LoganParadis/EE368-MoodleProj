@@ -4982,6 +4982,16 @@ function check_password_policy($password, &$errmsg, $user = null) {
         if (!check_consecutive_identical_characters($password, $CFG->maxconsecutiveidentchars)) {
             $errmsg .= '<div>'. get_string('errormaxconsecutiveidentchars', 'auth', $CFG->maxconsecutiveidentchars) .'</div>';
         }
+        if (stripos($password, $USER->firstname) !== false) {
+            $errmsg .= '<div>'. get_string('errorpasswordfirstname', 'auth', $USER->firstname) .'</div>';
+        }
+        if (stripos($password, $USER->lastname) !== false) {
+            $errmsg .= '<div>'. get_string('errorpasswordlastname', 'auth', $USER->lastname) .'</div>';
+        }
+        if (stripos($password, $USER->username) !== false) {
+            $errmsg .= '<div>'. get_string('errorpasswordusername', 'auth', $USER->username) .'</div>';
+        }
+
 
         // Fire any additional password policy functions from plugins.
         // Plugin functions should output an error message string or empty string for success.
@@ -8375,7 +8385,7 @@ function count_words($string) {
                 </                              # Start of close tag.
                 (?!                             # Do not match any of these specific close tag names.
                     a> | b> | del> | em> | i> |
-                    ins> | s> | small> |
+                    ins> | s> | small> | span> |
                     strong> | sub> | sup> | u>
                 )
                 \w+                             # But, apart from those execptions, match any tag name.
