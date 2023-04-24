@@ -27,24 +27,4 @@
 <div class="progress-text">
     <span class="sr-only">{{#str}}aria:courseprogress, block_myoverview{{/str}}</span>
     {{#str}}completepercent, block_myoverview, <span>{{progress}}</span>{{/str}}
-    {{#hasprogress}}
-        <div class="d-flex align-items-start" , style="padding-left: 10px; padding-bottom: 8px">
-            <progress id="course-progress-bar" value="{{progress}}" max="100"></progress>
-
-            <script>
-                    {{#js}}
-                    var progressBar = document.getElementById("course-progress-bar");
-                    var percent = progressBar.value / progressBar.max * 100;
-
-                    if (percent < 34) {
-                        progressBar.style.accentColor = "red";
-                    } else if (percent < 67) {
-                        progressBar.style.accentColor = "yellow";
-                    } else {
-                        progressBar.style.accentColor = "green";
-                    }
-                    {{/js}}
-            </script>
-        </div>
-    {{/hasprogress}}
 </div>
